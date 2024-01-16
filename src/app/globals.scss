@@ -1,0 +1,11 @@
+@import "../assets/scss/variables.module.scss";
+
+body{
+    background-color: $theme;
+    margin: 0px;
+    padding: 0px;
+}
+
+input:focus{
+    outline: none;
+}
