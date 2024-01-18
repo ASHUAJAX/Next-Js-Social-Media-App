@@ -1,0 +1,27 @@
+@import "../../../assets/scss/_variables";
+
+.PostHeader{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding:  10px ;
+    .PostHeader_admin_name{
+font-size: 14px;
+    }
+    .PostHeader_time_dot{
+width: 4px;
+height: 4px;
+border-radius: 4px;
+background-color: $primaryColor;
+    }
+    .PostHeader_time{
+        color: $primaryColor;
+        font-size: 11px;
+    }
+    .PostHeader_threeDots{
+        margin-left: auto;
+        svg{
+            font-size: 25px;
+        }
+    }
+}

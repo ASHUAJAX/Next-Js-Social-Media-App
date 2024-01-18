@@ -1,0 +1,34 @@
+@import "../../assets/scss/_mixins";
+@import "../../assets/scss/_variables";
+.header_wrapper {
+  .header_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
+    width: 77%;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 20px;
+    padding: 15px 5px;
+    .header_userDetails {
+      .header_userDetails_username {
+        line-height: 0px;
+        font-weight: bold;
+      }
+      .header_userDetails_realName {
+        line-height: 4px;
+        color: $secondaryText;
+        font-size: 14px;
+      }
+    }
+    .header_user_logout_btn {
+      @include primaryButton;
+      height: 24px;
+      width: 60px;
+      margin-left: 20px;
+    }
+  }
+}
