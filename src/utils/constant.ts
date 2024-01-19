@@ -1,0 +1,1 @@
+export const API_BASE_URL : any = process.env.API_BASE_URL; 

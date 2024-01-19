@@ -5,6 +5,7 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
 import style from "./login.module.scss";
+import { API_BASE_URL } from "@/utils/constant";
 
 function Login() {
   const [isShowPassword, setIsShowPasword] = useState(false);
@@ -30,9 +31,10 @@ function Login() {
 
     try {
       let data = { ...formData };
-      const url = "api/login";
+      
+      
 
-      const apiResp: any = await apiCallPostFunc(url, data);
+      const apiResp: any = await apiCallPostFunc(`${API_BASE_URL}/api/login`, data);
 
       if (apiResp) {
         console.log(apiResp);
