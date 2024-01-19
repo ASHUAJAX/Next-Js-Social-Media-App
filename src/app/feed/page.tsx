@@ -10,7 +10,7 @@ function feed() {
 <div className={style.feedContainer}>
 <PostCard/>
 </div>
-hsjhsjsh
+
 
     </div>
   )
