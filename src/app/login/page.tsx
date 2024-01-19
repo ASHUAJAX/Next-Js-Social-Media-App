@@ -8,6 +8,10 @@ import style from "./login.module.scss";
 import { API_BASE_URL } from "@/utils/constant";
 
 function Login() {
+
+  if(!API_BASE_URL){
+    return null
+  }
   const [isShowPassword, setIsShowPasword] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -53,6 +57,9 @@ function Login() {
     }
     setIsLoading(false);
   };
+
+
+
 
   return (
     <div className={style.loginwrapper}>
