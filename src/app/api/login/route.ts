@@ -21,6 +21,7 @@ export async function POST(req: Request) {
         if (isExistResp.password === pass) {
           return NextResponse.json({
             message: "User loginned successfully!",
+            status: 200,
           });
         } else {
           throw new Error("Invalid credentials!");

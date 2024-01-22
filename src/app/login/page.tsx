@@ -5,15 +5,11 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useEffect, useState } from "react";
 import style from "./login.module.scss";
-
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 function Login() {
-
-  const[window_URL,set_window_URL]:any=useState();
-
- 
-  
-
+  const [window_URL, set_window_URL]: any = useState();
 
   const [isShowPassword, setIsShowPasword] = useState(false);
 
@@ -24,6 +20,8 @@ function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const router = useRouter();
+
   const onChangeFunc = (event: any) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -32,24 +30,39 @@ function Login() {
 
   const submitFunc = async (event: any) => {
     event.preventDefault();
- 
-    
+
     setIsLoading(true);
     setError("");
 
+
     try {
-      let data:object = { ...formData };
-      
-      const apiResp: any = await apiCallPostFunc(window_URL,`/api/login`, data);
+
+
+      if (!formData.uName || !formData.pass) {
+        throw new Error("Please fill out all the fields in form!");
+      }
+
+      const apiResp: any = await apiCallPostFunc(
+        window_URL,
+        `/api/login`,
+        formData
+      );
 
       if (apiResp) {
         console.log(apiResp);
         if (apiResp?.data?.error) {
           throw new Error(apiResp?.data?.error);
-        } else {
-
+        } else if (apiResp?.data?.status === 200) {
           console.log(apiResp?.data?.message);
-
+          signIn("credentials", {
+            userName: formData.uName,
+            password: formData.pass,
+            redirect: false
+          }
+          )
+          router.push("/feed");
+        } else {
+          console.log(apiResp?.data?.message);
         }
       } else {
         throw new Error("Some Error Occure");
@@ -60,10 +73,9 @@ function Login() {
     setIsLoading(false);
   };
 
-
-useEffect(()=>{
-  set_window_URL(window.location.href);
-},[])
+  useEffect(() => {
+    set_window_URL(window.location.href);
+  }, []);
 
   return (
     <div className={style.loginwrapper}>
@@ -107,13 +119,10 @@ useEffect(()=>{
             )}
           </div>
           <br />
-          {
-            error && <p className={style.loginForm_submitError}>{error}</p>
-          }
+          {error && <p className={style.loginForm_submitError}>{error}</p>}
           <button className={style.loginForm_submit} type="submit">
             {isLoading ? "logining in..." : "login"}
           </button>
-
         </form>
       </div>
     </div>
