@@ -3,15 +3,18 @@
 import { apiCallPostFunc } from "@/utils/apiCallFormat";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./login.module.scss";
-import { API_BASE_URL } from "@/utils/constant";
+
 
 function Login() {
 
-  if(!API_BASE_URL){
-    return null
-  }
+  const[window_URL,set_window_URL]:any=useState();
+
+ 
+  
+
+
   const [isShowPassword, setIsShowPasword] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -29,16 +32,15 @@ function Login() {
 
   const submitFunc = async (event: any) => {
     event.preventDefault();
-
+ 
+    
     setIsLoading(true);
     setError("");
 
     try {
-      let data = { ...formData };
+      let data:object = { ...formData };
       
-      
-
-      const apiResp: any = await apiCallPostFunc(`${API_BASE_URL}/api/login`, data);
+      const apiResp: any = await apiCallPostFunc(window_URL,`/api/login`, data);
 
       if (apiResp) {
         console.log(apiResp);
@@ -59,7 +61,9 @@ function Login() {
   };
 
 
-
+useEffect(()=>{
+  set_window_URL(window.location.href);
+},[])
 
   return (
     <div className={style.loginwrapper}>
