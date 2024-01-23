@@ -3,10 +3,9 @@
 import { apiCallPostFunc } from "@/utils/apiCallFormat";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import style from "./login.module.scss";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 
 function Login() {
   const [window_URL, set_window_URL]: any = useState();
@@ -53,13 +52,11 @@ function Login() {
         if (apiResp?.data?.error) {
           throw new Error(apiResp?.data?.error);
         } else if (apiResp?.data?.status === 200) {
-          console.log(apiResp?.data?.message);
-          signIn("credentials", {
-            userName: formData.uName,
-            password: formData.pass,
-            redirect: false
-          }
-          )
+          localStorage.setItem("name", apiResp?.data?.user?.name);
+          localStorage.setItem("userImg", apiResp?.data?.user?.userImg);
+          localStorage.setItem("userName", apiResp?.data?.user?.userName);
+          localStorage.setItem("user_ID", apiResp?.data?.user?._id);
+
           router.push("/feed");
         } else {
           console.log(apiResp?.data?.message);

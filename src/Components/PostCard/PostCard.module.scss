@@ -5,7 +5,7 @@
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   width: 270px;
   height: max-content;
-
+margin-bottom: 40px;
   border-radius: 10px;
 
   .postCard_postImg_conatainer {
@@ -29,6 +29,9 @@ svg{
     cursor: pointer;
 }
     svg:hover {
+      color: $primaryColor;
+    }
+    .postCard_userInteractions_liked{
       color: $primaryColor;
     }
 
