@@ -48,7 +48,7 @@ function Login() {
       );
 
       if (apiResp) {
-        console.log(apiResp);
+       
         if (apiResp?.data?.error) {
           throw new Error(apiResp?.data?.error);
         } else if (apiResp?.data?.status === 200) {
@@ -59,7 +59,7 @@ function Login() {
 
           router.push("/feed");
         } else {
-          console.log(apiResp?.data?.message);
+          throw new Error(apiResp?.data?.message);
         }
       } else {
         throw new Error("Some Error Occure");

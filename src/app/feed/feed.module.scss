@@ -1,7 +1,21 @@
+@import "../../assets/scss/_variables";
+
 .feedContainer{
     margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
     z-index: 1;
   width: max-content;
+  .feedError{
+    text-align: center;
+    background-color:$errorColor;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+  }
 }
+.loaderContainer{
+  display: flex;
+  align-items: center;
+  justify-content:center ;
+ }

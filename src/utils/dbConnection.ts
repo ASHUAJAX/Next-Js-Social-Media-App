@@ -6,7 +6,7 @@ const dbConnection = async () => {
         const mongooseResp: object = await mongoose.connect(mongoUrl);
 
         if (mongooseResp) {
-            console.log("Connection Successfull!");
+            
         }else{
             throw new Error("DB Connection Failed!");
         }

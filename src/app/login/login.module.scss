@@ -77,7 +77,7 @@
           rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
       }
       .loginForm_submitError{
-        background: rgb(240, 151, 151);
+        background: $errorColor;
         text-align: left;
         padding: 4px;
         margin: 0px;

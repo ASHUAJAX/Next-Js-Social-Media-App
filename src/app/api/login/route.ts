@@ -23,24 +23,24 @@ export async function POST(req: Request) {
         if (isExistResp.password === pass) {
           
           //inserting feeds
-          const feedsArr = [];
+          // const feedsArr = [];
         
-          for (let i = 0; i < 100; i++) {
-            let feedObj: object = {
-              user_id: isExistResp._id,
-              adminProfileImg: "https://thepreviewapp.com/wp-content/uploads/2021/08/how-to-use-instagram-collab-feature.jpeg",
-              postImg : "https://spiritualquotes.in/wp-content/uploads/2023/02/2-1024x1024.jpg",
-              adminProfileName: "idioticfeeds" + i,
-              likes: i+i,
-              // likedByMe:"",
-              comments: "10",
-              description: "TRANSCENDENCE: Trailer Out Now | In a world gripped by technology, our choices are steering youth towards an uncertain horizon. See what their future might hold",
-            }
-            feedsArr.push(feedObj);
-          }
-          const savedUser = await Feed.insertMany(feedsArr);
+          // for (let i = 0; i < 100; i++) {
+          //   let feedObj: object = {
+          //     user_id: isExistResp._id,
+          //     adminProfileImg: "https://thepreviewapp.com/wp-content/uploads/2021/08/how-to-use-instagram-collab-feature.jpeg",
+          //     postImg : "https://spiritualquotes.in/wp-content/uploads/2023/02/2-1024x1024.jpg",
+          //     adminProfileName: "idioticfeeds" + i,
+          //     likes: i+i,
+          //     // likedByMe:"",
+          //     comments: "10",
+          //     description: "TRANSCENDENCE: Trailer Out Now | In a world gripped by technology, our choices are steering youth towards an uncertain horizon. See what their future might hold",
+          //   }
+          //   feedsArr.push(feedObj);
+          // }
+          // const savedUser = await Feed.insertMany(feedsArr);
 
-           console.log(savedUser);
+          //  console.log(savedUser);
 
           return NextResponse.json({
             message: "User loginned successfully!",

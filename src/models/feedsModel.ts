@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 const FeedSchema: any = new mongoose.Schema({
     user_id: {
@@ -11,17 +11,16 @@ const FeedSchema: any = new mongoose.Schema({
     },
     postImg: {
         type: String,
-        required: [true, "Must provide adminProfileImg"]
+        required: [true, "Must provide postImg"]
     },
-    likedByMe: {
-        type: Boolean,
-        default:false,
-        required: [true, "Must provide adminProfileImg"]
+    likedByUsers: {
+        type: [],
+        default:[],
     },
     adminProfileName: {
         type: String,
         required: [true, "Must provide adminProfileName"],
-        unique: [true, "Username should be unieque"]
+        unique: [true, "Username should be unique"]
     },
     likes: {
         type: String,
@@ -38,6 +37,7 @@ const FeedSchema: any = new mongoose.Schema({
     }
 })
 
-const Feed = mongoose.model("Feed", FeedSchema);
+
+const Feed  = mongoose.models.Feed || mongoose.model("Feed",FeedSchema);
 
 export default Feed;
