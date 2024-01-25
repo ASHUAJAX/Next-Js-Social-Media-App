@@ -16,11 +16,12 @@ export const GET = async (req: Request, { params }) => {
     let skip: number = (page - 1) * limit;
 
     let count: any = await Feed.find({ user_id: id }).countDocuments();
+    
 
     let feedsResp: any = await Feed.find({ user_id: id })
       .skip(skip)
       .limit(limit);
-console.log("Api Called");
+
     if (feedsResp) {
       if (feedsResp.length !== 0) {
         return NextResponse.json({
@@ -31,7 +32,13 @@ console.log("Api Called");
           status: 200,
         });
       } else {
-        throw new Error("Feeds not found!");
+        return NextResponse.json({
+          feedsResp: feedsResp,
+          message: "api called",
+          count: count,
+          limit: limit,
+          status: 200,
+        });
       }
     } else {
       throw new Error("Some error occured in fetching feeds!");

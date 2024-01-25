@@ -9,3 +9,19 @@ body{
 input:focus{
     outline: none;
 }
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgb(71, 71, 71);
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #898989;
+    border-radius: 100px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

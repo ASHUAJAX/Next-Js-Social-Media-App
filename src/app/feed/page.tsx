@@ -10,8 +10,7 @@ import { CircularProgress } from "@mui/material";
 
 function feed() {
   const [feeds, setFeeds]: any = useState([]);
-  // const [page, setPage] = useState(1);
-  // const[count,setCount]=useState(0);
+
   const [dataRequirements, setDataRequirements] = useState({
     page: 1,
     count: 0,
@@ -33,14 +32,28 @@ function feed() {
       if (apiResp) {
         if (apiResp.data?.status === 200) {
           if (apiResp?.data?.feedsResp.length > 0) {
-            setFeeds((prev: any) => [...prev, ...apiResp?.data?.feedsResp]);
+            // setFeeds((prev: any) => [...prev, ...apiResp?.data?.feedsResp]);
+            setFeeds((prev: any) => {
+              const newFeeds = apiResp?.data?.feedsResp || [];
+
+              // Combine the previous feeds with the new ones
+              const combinedFeeds = [...prev, ...newFeeds];
+
+              // Create a Set with a custom function to compare objects
+              const uniqueFeeds = Array.from(
+                new Set(combinedFeeds.map(JSON.stringify)),
+                JSON.parse
+              );
+
+              return uniqueFeeds;
+            });
 
             setDataRequirements((prev) => ({
               ...prev,
               count: apiResp?.data?.count,
             }));
           } else {
-            throw new Error("Some error occurred in fetching the feeds");
+            throw new Error("You don't have any feeds!");
           }
         } else {
           throw new Error("Some error occurred in fetching the feeds");
@@ -56,18 +69,20 @@ function feed() {
 
   const hadleInfiniteScroll = () => {
     if (
-      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      window.innerHeight + document.documentElement.scrollTop + 1 >
       document.documentElement.scrollHeight
     ) {
-      // setPage((prev) => (prev*5 < count) ? prev + 1 : prev);
-
       setDataRequirements((prev) => ({
         ...prev,
-        page: prev.page * 10 < prev.count ? prev.page + 1 : prev.page,
+        page:
+          //1*99%10=9.9
+          prev.page * (prev.count % prev.limit) <= prev.count
+            ? prev.page + 1
+            : prev.page,
       }));
     }
   };
-  
+
   useEffect(() => {
     window.addEventListener("scroll", hadleInfiniteScroll);
     return () => window.removeEventListener("scroll", hadleInfiniteScroll);
@@ -79,6 +94,8 @@ function feed() {
     };
   }, [dataRequirements.page]);
 
+  console.log(feeds);
+
   return (
     <div className="">
       <AuthChecker />
@@ -88,8 +105,8 @@ function feed() {
         {error && <p className={style.feedError}>{error}</p>}
 
         {feeds &&
-          feeds.map((elem: any) => {
-            return <PostCard PostCardData={elem} />;
+          feeds.map((elem, index) => {
+            return <PostCard PostCardData={elem} key={index} />;
           })}
 
         {isLoading && (

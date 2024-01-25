@@ -21,12 +21,14 @@ function PostHeader({ PostCardData }) {
     daysDifference = parseInt(daysDifference.toFixed().replace("-", ""));
 
     if (hoursDifference === 0) {
-      console.log(minutesDifference);
-      setCorrectPostTime(minutesDifference + " Minutes ago");
+      let text = minutesDifference < 2 ? " Minute ago" : " Minutes ago";
+      setCorrectPostTime(minutesDifference + text);
     } else if (hoursDifference < 24) {
-      setCorrectPostTime(hoursDifference + " Hours ago");
+      let text = hoursDifference < 2 ? " Hour ago" : " Hours ago";
+      setCorrectPostTime(hoursDifference + text);
     } else {
-      setCorrectPostTime(daysDifference + " days ago");
+      let text = daysDifference < 2 ? " day ago" : " days ago";
+      setCorrectPostTime(daysDifference + text);
     }
   };
 

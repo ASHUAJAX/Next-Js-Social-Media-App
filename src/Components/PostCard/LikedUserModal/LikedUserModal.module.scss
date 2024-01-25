@@ -1,0 +1,56 @@
+@import "../../../assets/scss/_variables";
+
+.ModalContainer {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+z-index: 11;
+  .Modal {
+    width: 299px;
+    height: max-content;
+    max-height: 320px;
+
+    background-color: #fff;
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+    .Modal_header {
+      display: flex;
+      align-items: center;
+      padding: 0px 10px;
+      border-bottom: 1px solid $secondaryText;
+      p {
+        font-weight: bold;
+        width: 100%;
+        font-size: 19px;
+        text-align: center;
+      }
+      svg {
+        margin-left: auto;
+        cursor: pointer;
+      }
+    }
+
+    .Modal_list_container {
+        height: max-content;
+        max-height: 320px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      
+      .Modal_list_container_NoOneLiked{
+        text-align: center;
+        background-color: rgb(230 230 230);
+        font-size: 14px;
+        font-weight: 500;
+        padding: 19px;
+      }
+    }
+  }
+}

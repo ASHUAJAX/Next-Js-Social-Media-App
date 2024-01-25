@@ -1,0 +1,35 @@
+@import "../../../../assets/scss/_variables";
+
+.LikedUser_container {
+    display: flex;
+    align-items: center;
+ 
+    gap: 9px;
+    zoom: 0.9;
+    width:90%;
+    margin: auto;
+   
+   padding: 10px;
+   
+   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    .LikedUser_userDetails {
+     
+      .LikedUser_userDetails_realName {
+        
+        line-height: 0px;
+        font-weight: bold;
+        font-size: 14px;
+        text-transform: capitalize
+      }
+    }
+
+    .LikedUser_userDetails_username {
+     background-color: $primaryColor;
+        height: 29px;
+        font-weight: bold;
+        margin-left: auto;
+        border-radius: 10px;
+        font-size: 12px;
+      }
+    
+  }
