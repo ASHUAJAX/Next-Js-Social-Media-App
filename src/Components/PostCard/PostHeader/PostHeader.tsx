@@ -4,7 +4,7 @@ import { Avatar } from "@mui/material";
 import Image from "next/image";
 import postHeaderImage from "../../../assets/images/postImageDemo.jpg";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-function PostHeader({ PostCardData }) {
+function PostHeader({ PostCardData }:any) {
   const [correctPostTime, setCorrectPostTime]: any = useState(false);
 
   const timeAgo = () => {

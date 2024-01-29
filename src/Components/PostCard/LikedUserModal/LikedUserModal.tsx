@@ -2,9 +2,8 @@ import React from "react";
 import LikedUser from "./LikedUser/LikedUser";
 import style from "./LikedUserModal.module.scss";
 import { Close } from "@mui/icons-material";
-function LikedUserModal({ closeFunc, totalLikes }) {
+function LikedUserModal({ closeFunc, totalLikes }:any) {
 
-  console.log(totalLikes.length);
   return (
     <div className={style.ModalContainer}>
       <div className={style.Modal}>
@@ -14,7 +13,7 @@ function LikedUserModal({ closeFunc, totalLikes }) {
         </div>
 
         <div className={style.Modal_list_container}>
-          {totalLikes.map((elem, index) => {
+          {totalLikes.map((elem:any, index:any) => {
             return <LikedUser userInfo={elem} key={index} />;
           })}
 

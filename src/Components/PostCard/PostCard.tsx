@@ -11,12 +11,12 @@ import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlin
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { apiCallPutFunc } from "@/utils/apiCallFormat";
 import LikedUserModal from "./LikedUserModal/LikedUserModal";
-function PostCard({ PostCardData }) {
+function PostCard({ PostCardData }:any) {
   const [isReadMore, setIsReadMore] = useState(true);
 
   const [window_URL, set_window_URL]: any = useState();
 
-  const [isUserLiked, setIsUserLiked] = useState(PostCardData?.likedByUsers?.some(obj => obj._id === localStorage.getItem("user_ID")));
+  const [isUserLiked, setIsUserLiked] = useState(PostCardData?.likedByUsers?.some((obj:any) => obj._id === localStorage.getItem("user_ID")));
   const [totalLikes, setTotalLikes]: any = useState(0);
 
   const [showLikedModal, setShowLikedModal] = useState(false);
@@ -25,7 +25,7 @@ function PostCard({ PostCardData }) {
     setIsReadMore(!isReadMore);
   };
 
-  const likeFunc = async (dataForUpdate: object) => {
+  const likeFunc = async (dataForUpdate: any) => {
     try {
       const apiResp = await apiCallPutFunc(
         window_URL,
@@ -36,7 +36,7 @@ function PostCard({ PostCardData }) {
       if (apiResp?.data?.error) {
         throw new Error(apiResp?.data?.error);
       } else if (apiResp?.data?.status === 200) {
-        console.log("Liked Successfully", apiResp?.data?.updatedDocument);
+       
 
         //like checker
         let likedByUsersArr: string[] =
@@ -51,7 +51,7 @@ function PostCard({ PostCardData }) {
         throw new Error(apiResp?.data?.message);
       }
     } catch (err: any) {
-      console.log(err.message);
+      // console.log(err.message);
     }
   };
 

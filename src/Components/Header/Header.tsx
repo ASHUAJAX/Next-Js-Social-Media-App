@@ -9,9 +9,18 @@ import { useRouter } from "next/navigation";
 function Header() {
   const route = useRouter();
 
-  const [userData, setUserData] = useState();
+  
+  interface UserData {
+    username: any;
+    userImg: any;
+    name :any ;
+    // Add other properties if necessary
+  }
+
+  const [userData, setUserData] = useState<UserData>();
 
 
+  
   useEffect(()=>{
     setUserData({
       username: localStorage.getItem("userName")

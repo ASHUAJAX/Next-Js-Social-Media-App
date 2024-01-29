@@ -3,7 +3,7 @@ import dbConnection from "@/utils/dbConnection";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
-export const GET = async (req: Request, { params }) => {
+export const GET = async (req: Request, { params }:any) => {
   try {
     await dbConnection();
 

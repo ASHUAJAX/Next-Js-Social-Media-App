@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { apiCallGetFunc } from "@/utils/apiCallFormat";
 import { CircularProgress } from "@mui/material";
 
-function feed() {
+function Feed() {
   const [feeds, setFeeds]: any = useState([]);
 
   const [dataRequirements, setDataRequirements] = useState({
@@ -21,7 +21,7 @@ function feed() {
 
   const fetchFeeds = async () => {
     setIsLoading(true);
-    setError(null);
+    setError(false);
     try {
       let user_ID = localStorage.getItem("user_ID");
 
@@ -33,21 +33,21 @@ function feed() {
       if (apiResp) {
         if (apiResp.data?.status === 200) {
           if (apiResp?.data?.feedsResp.length > 0) {
-            // setFeeds((prev: any) => [...prev, ...apiResp?.data?.feedsResp]);
-            setFeeds((prev: any) => {
-              const newFeeds = apiResp?.data?.feedsResp || [];
+            setFeeds((prev: any) => [...prev, ...apiResp?.data?.feedsResp]);
+            // setFeeds((prev: any) => {
+            //   const newFeeds = apiResp?.data?.feedsResp || [];
 
-              // Combine the previous feeds with the new ones
-              const combinedFeeds = [...prev, ...newFeeds];
+            //   // Combine the previous feeds with the new ones
+            //   const combinedFeeds = [...prev, ...newFeeds];
 
-              // Create a Set with a custom function to compare objects
-              const uniqueFeeds = Array.from(
-                new Set(combinedFeeds.map(JSON.stringify)),
-                JSON.parse
-              );
+            //   // Create a Set with a custom function to compare objects
+            //   const uniqueFeeds = Array.from(
+            //     new Set(combinedFeeds.map(JSON.stringify)),
+            //     JSON.parse
+            //   );
 
-              return uniqueFeeds;
-            });
+            //   return uniqueFeeds;
+            // });
 
             setDataRequirements((prev) => ({
               ...prev,
@@ -95,7 +95,7 @@ function feed() {
     };
   }, [dataRequirements.page]);
 
-  console.log(feeds);
+  
 
   return (
     <div className="">
@@ -106,7 +106,7 @@ function feed() {
       
 
         {feeds &&
-          feeds.map((elem, index) => {
+          feeds.map((elem:any, index:any) => {
             return <PostCard PostCardData={elem} key={index} />;
           })}
 
@@ -122,4 +122,4 @@ function feed() {
   );
 }
 
-export default feed;
+export default Feed;
