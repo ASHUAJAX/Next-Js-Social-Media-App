@@ -21,6 +21,7 @@ function feed() {
 
   const fetchFeeds = async () => {
     setIsLoading(true);
+    setError(null);
     try {
       let user_ID = localStorage.getItem("user_ID");
 
@@ -53,10 +54,10 @@ function feed() {
               count: apiResp?.data?.count,
             }));
           } else {
-            throw new Error("You don't have any feeds!");
+            
           }
         } else {
-          throw new Error("Some error occurred in fetching the feeds");
+          throw new Error(apiResp.data.message);
         }
       } else {
         throw new Error("Some error occurred in fetching the feeds");
@@ -102,7 +103,7 @@ function feed() {
       <Header />
 
       <div className={style.feedContainer}>
-        {error && <p className={style.feedError}>{error}</p>}
+      
 
         {feeds &&
           feeds.map((elem, index) => {
@@ -114,6 +115,8 @@ function feed() {
             <CircularProgress color="success" />
           </div>
         )}
+
+{error && <p className={style.feedError}>{error}</p>}
       </div>
     </div>
   );

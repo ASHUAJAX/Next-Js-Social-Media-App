@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const FeedSchema: any = new mongoose.Schema({
-    user_id: {
-        type: String,
-        required: [true, "Must provide user ID"]
+    subscribedUsers: {
+        type: [],
+        default:[],
     },
     adminProfileImg: {
         type: String,

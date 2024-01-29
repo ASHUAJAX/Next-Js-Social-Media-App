@@ -1,5 +1,6 @@
 import Feed from "@/models/feedsModel";
 import dbConnection from "@/utils/dbConnection";
+import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
 export const GET = async (req: Request, { params }) => {
@@ -15,13 +16,16 @@ export const GET = async (req: Request, { params }) => {
 
     let skip: number = (page - 1) * limit;
 
-    let count: any = await Feed.find({ user_id: id }).countDocuments();
     
+    const objectId = new mongoose.Types.ObjectId(id);
+    let count: any = await Feed.find({ 'subscribedUsers': objectId }).countDocuments().exec();
 
-    let feedsResp: any = await Feed.find({ user_id: id })
+   
+    let feedsResp: any = await Feed.find({ 'subscribedUsers': objectId })
       .skip(skip)
-      .limit(limit);
+      .limit(limit).exec();
 
+     
     if (feedsResp) {
       if (feedsResp.length !== 0) {
         return NextResponse.json({
@@ -34,12 +38,14 @@ export const GET = async (req: Request, { params }) => {
       } else {
         return NextResponse.json({
           feedsResp: feedsResp,
-          message: "api called",
+          message: "Data not found",
           count: count,
           limit: limit,
-          status: 200,
+          status: 404,
         });
       }
+
+    
     } else {
       throw new Error("Some error occured in fetching feeds!");
     }
