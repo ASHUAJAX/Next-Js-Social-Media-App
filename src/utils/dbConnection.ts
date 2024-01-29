@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const dbConnection = async () => {
     try {
-        const mongoUrl: any = process.env.NEXT_PUBLIC_MONGO_DB_URL;
+        const mongoUrl: any = process.env.MONGO_DB_URL;
         const mongooseResp: object = await mongoose.connect(mongoUrl);
 
         if (mongooseResp) {
