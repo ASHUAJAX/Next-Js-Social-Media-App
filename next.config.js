@@ -3,7 +3,7 @@
 const nextConfig = {
     // output:"export",
     // reactStrictMode: true,
-    images:{unoptimized:true},
+    // images:{unoptimized:true},
     // sassOptions:{
     //     includePaths: [path.join(__dirname,'styles')]
     // }
