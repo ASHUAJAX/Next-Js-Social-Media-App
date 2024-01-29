@@ -44,12 +44,21 @@ export async function POST(req: Request) {
 
           //  console.log(savedUser);
 
+          let userObj = isExistResp.toObject();
+
+          delete userObj.password;
+
+
+
           return NextResponse.json({
             message: "User loginned successfully!",
-            user: isExistResp,
+            user: userObj,
             status: 200,
           });
-          
+
+
+
+
         } else {
           throw new Error("Invalid credentials!");
         }

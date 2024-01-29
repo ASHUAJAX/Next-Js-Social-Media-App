@@ -12,7 +12,7 @@ export const apiCallGetFunc = async (window_URL: string, url: string) => {
   }
 
   const apiResp = await axios.get(`${envURL + url}`);
-  
+
   return apiResp;
 };
 
@@ -31,11 +31,20 @@ export const apiCallPostFunc = async (
   }
 
   const headers = {
-    "Content-Type": "application/json",
+    "Content-Type": "application/json; charset=UTF-8",
   };
-  const apiResp = await axios.post(`${envURL + url}`, data, { headers });
+  // const apiResp = await axios.post(`${envURL + url}`, data, { headers });
 
-  return apiResp;
+  // debugger
+  const apiResp = await fetch(`${envURL + url}`, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: headers
+  });
+
+
+
+  return await apiResp.json();
 };
 
 export const apiCallPutFunc = async (
