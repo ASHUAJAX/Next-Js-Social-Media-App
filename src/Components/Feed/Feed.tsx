@@ -22,6 +22,7 @@ function Feed() {
     setIsLoading(true);
     setError(false);
     try {
+      debugger
       let user_ID = localStorage.getItem("user_ID");
 
       const apiResp: any = await apiCallGetFunc(
