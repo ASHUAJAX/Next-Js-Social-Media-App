@@ -18,8 +18,7 @@ function Feed() {
   const [error, setError] = useState(false);
 
   const fetchFeeds = async () => {
-    console.log(localStorage);
-    console.log(localStorage.getItem("user_ID"))
+    
     setIsLoading(true);
     setError(false);
     try {
