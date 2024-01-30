@@ -25,7 +25,7 @@ function Feed() {
       let user_ID = localStorage.getItem("user_ID");
 
       const apiResp: any = await apiCallGetFunc(
-        window.location.href,
+       
         `/api/feeds/id=${user_ID}&page=${dataRequirements.page}&limit=${dataRequirements.limit}`
       );
 

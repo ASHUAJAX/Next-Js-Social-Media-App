@@ -28,7 +28,6 @@ function PostCard({ PostCardData }:any) {
   const likeFunc = async (dataForUpdate: any) => {
     try {
       const apiResp = await apiCallPutFunc(
-        window_URL,
         `/api/feeds`,
         dataForUpdate
       );

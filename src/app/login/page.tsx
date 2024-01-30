@@ -41,7 +41,7 @@ function Login() {
       }
 
       const apiResp: any = await apiCallPostFunc(
-        window_URL,
+       
         `/api/login`,
         formData
       );
