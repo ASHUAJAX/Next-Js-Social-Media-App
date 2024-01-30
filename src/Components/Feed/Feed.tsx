@@ -19,10 +19,13 @@ function Feed() {
   const [error, setError] = useState(false);
 
   const fetchFeeds = async () => {
+    debugger
+console.log(localStorage);
+    console.log(localStorage.getItem("user_ID"))
     setIsLoading(true);
     setError(false);
     try {
-      debugger
+      
       let user_ID = localStorage.getItem("user_ID");
 
       const apiResp: any = await apiCallGetFunc(
