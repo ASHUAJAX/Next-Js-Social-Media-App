@@ -32,19 +32,11 @@ export const apiCallPostFunc = async (
 
   const headers = {
     "Content-Type": "application/json; charset=UTF-8",
+
   };
-  // const apiResp = await axios.post(`${envURL + url}`, data, { headers });
+  const apiResp = await axios.post(`${envURL + url}`, data, { headers });
 
-  // debugger
-  const apiResp = await fetch(`${envURL + url}`, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: headers
-  });
-
-
-
-  return await apiResp.json();
+  return apiResp;
 };
 
 export const apiCallPutFunc = async (

@@ -1,24 +1,25 @@
-import React from 'react'
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+"use client";
+import { redirect } from "next/navigation";
+import { useEffect, useState } from "react";
 
-function AuthChecker() {
-  const router = useRouter();
+function AuthChecker({ Children }: any) {
+
+  const [IS_AUTH, set_IS_AUTH]: any = useState(false);
+
   useEffect(() => {
-    
     let isAuth = localStorage.getItem("user_ID");
-    
+    set_IS_AUTH(isAuth);
     if (!isAuth) {
-      router.push("/login")
+      redirect("/login");
     }
-
   }, [])
 
-  return (
-    <>
 
-    </>
-  )
+  return <>
+    {
+      IS_AUTH && Children
+    }
+  </>;
 }
 
-export default AuthChecker
+export default AuthChecker;

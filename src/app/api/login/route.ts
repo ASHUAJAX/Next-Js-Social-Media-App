@@ -48,8 +48,6 @@ export async function POST(req: Request) {
 
           delete userObj.password;
 
-
-
           return NextResponse.json({
             message: "User loginned successfully!",
             user: userObj,
