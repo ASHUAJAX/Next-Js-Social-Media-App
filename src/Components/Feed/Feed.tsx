@@ -1,7 +1,6 @@
 "use client";
 import Header from "@/Components/Header/Header";
 import PostCard from "@/Components/PostCard/PostCard";
-import AuthChecker from "@/Components/AuthChecker/AuthChecker";
 import { apiCallGetFunc } from "@/utils/apiCallFormat";
 import { CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -19,17 +18,16 @@ function Feed() {
   const [error, setError] = useState(false);
 
   const fetchFeeds = async () => {
-    debugger
-console.log(localStorage);
+    console.log(localStorage);
     console.log(localStorage.getItem("user_ID"))
     setIsLoading(true);
     setError(false);
     try {
-      
+
       let user_ID = localStorage.getItem("user_ID");
 
       const apiResp: any = await apiCallGetFunc(
-       
+
         `/api/feeds/id=${user_ID}&page=${dataRequirements.page}&limit=${dataRequirements.limit}`
       );
 
@@ -92,14 +90,15 @@ console.log(localStorage);
   }, []);
 
   useEffect(() => {
-    return () => {
+  
+    // return () => {
       fetchFeeds();
-    };
+    // };
   }, [dataRequirements.page]);
 
   return (
     <div className="">
-      <AuthChecker />
+
       <Header />
 
       <div className={style.feedContainer}>
