@@ -49,13 +49,13 @@ function Login() {
 
       if (apiResp) {
        
-        if (apiResp?.user?.error) {
-          throw new Error(apiResp?.user?.error);
-        } else if (apiResp?.user) {
-          localStorage.setItem("name", apiResp?.user?.name);
-          localStorage.setItem("userImg", apiResp?.user?.userImg);
-          localStorage.setItem("userName", apiResp?.user?.userName);
-          localStorage.setItem("user_ID", apiResp?.user?._id);
+        if (apiResp?.data?.error) {
+          throw new Error(apiResp?.data?.error);
+        } else if (apiResp?.data?.status === 200) {
+          localStorage.setItem("name", apiResp?.data?.user?.name);
+          localStorage.setItem("userImg", apiResp?.data?.user?.userImg);
+          localStorage.setItem("userName", apiResp?.data?.user?.userName);
+          localStorage.setItem("user_ID", apiResp?.data?.user?._id);
 
           router.push("/feed");
         } else {
