@@ -89,10 +89,7 @@ function Feed() {
   }, []);
 
   useEffect(() => {
-  
-    // return () => {
       fetchFeeds();
-    // };
   }, [dataRequirements.page]);
 
   return (

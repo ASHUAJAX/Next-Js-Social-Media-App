@@ -1,17 +1,23 @@
 @import "../../assets/scss/_mixins";
 @import "../../assets/scss/_variables";
 .header_wrapper {
+  position: fixed;
+  top: 10px;
+  background-color: white;
+  width: 100%;
+  height: max-content;
+  z-index: 2;
   .header_container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 9px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    width: 70%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+      rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 
-    width: 77%;
-    margin: auto;
-    margin-top: 10px;
     border-radius: 20px;
+    margin: auto;
     padding: 15px 5px;
     .header_userDetails {
       .header_userDetails_username {
@@ -22,7 +28,7 @@
         line-height: 4px;
         color: $secondaryText;
         font-size: 14px;
-        text-transform: capitalize
+        text-transform: capitalize;
       }
     }
     .header_user_logout_btn {
